@@ -31,17 +31,17 @@ Also, you can use :locale when specifying the :scope option.
 
 For instance, if you want to validate that a product title is unique in each locale:
 
-  class Product < ActiveRecord::Base
-    translates :title
-    validates_globalized_uniqueness_of :title, :scope => :locale
-  end
+    class Product < ActiveRecord::Base
+      translates :title
+      validates_globalized_uniqueness_of :title, :scope => :locale
+    end
 
 Or:
 
-  class Product < ActiveRecord::Base
-    translates :title
-    validates :title, :globalized_uniqueness => {:scope => :locale}
-  end
+    class Product < ActiveRecord::Base
+      translates :title
+      validates :title, :globalized_uniqueness => {:scope => :locale}
+    end
 
 ## Todo / Known Issues
 
