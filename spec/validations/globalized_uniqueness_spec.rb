@@ -146,6 +146,42 @@ describe 'ActiveRecord::Validations::GlobalizedUniquenessValidator' do
     r3.valid?.should be_true
   end
 
+  it "should validate case sensitive uniqueness" do
+    Topic.validates_globalized_uniqueness_of(:title, :case_sensitive => true, :allow_nil => true)
+
+    t = Topic.new("title" => "I'm unique!")
+    t.save.should be_true
+
+    t.content = "Remaining unique"
+    t.save.should be_true
+
+    t2 = Topic.new("title" => "I'M UNIQUE!")
+    t2.valid?.should be_true
+    t2.save.should be_true
+
+    t3 = Topic.new("title" => "I'M uNiQUe!")
+    t3.valid?.should be_true
+    t3.save.should be_true
+
+    t4 = Topic.new("title" => "I'M uNiQUe!")
+    t4.valid?.should be_false
+    t4.save.should be_false
+    t4.errors[:title].should == ["has already been taken"]
+  end
+
+  # FIXME this test fails on rails 3.0.x
+  it "should validate case insensitive uniqueness" do
+    Topic.validates_globalized_uniqueness_of(:title, :case_sensitive => false, :allow_nil => true)
+
+    t = Topic.new("title" => "I'm unique!")
+    t.save.should be_true
+
+    t2 = Topic.new("title" => "I'M UNIQUE!")
+    t2.valid?.should be_false
+    t2.save.should be_false
+    t2.errors[:title].should == ["has already been taken"]
+  end
+
   it "should validate uniqueness with a translated serialized attribute"
 
 end

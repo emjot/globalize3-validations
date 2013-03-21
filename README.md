@@ -4,7 +4,12 @@ Provides a uniqueness validator which can be used with globalize3 translated mod
 
 ## Compatibility
 
-The validator is currently based on the activerecord 3.1 uniqueness validator. It should also work with 3.0 (and probably with 3.2).
+Works with rails 3.1 and 3.2.
+
+Rails 3.0 is not fully supported (case insensitive validation doesn't work).
+
+The validator is based on the activerecord 3.1 uniqueness validator.
+
 
 ## Installation
 
@@ -45,8 +50,8 @@ Or:
 
 ## Todo / Known Issues
 
-* Might not yet work correctly with serialized attributes which are translated
-* Verify that it works with activerecord 3.2
+* Doesn't work yet with rails 3.0 when case_sensitive is set to false
+* Might not yet work correctly with serialized attributes which are translated (haven't tested that yet)
 
 ## Contributing
 
