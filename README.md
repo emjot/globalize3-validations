@@ -1,5 +1,7 @@
 # globalize3-validations
 
+[![Build Status](https://travis-ci.org/emjot/globalize3-validations.png?branch=master)](https://travis-ci.org/emjot/globalize3-validations)
+
 Provides a uniqueness validator which can be used with globalize3 translated models.
 
 ## Compatibility
