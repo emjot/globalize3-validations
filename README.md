@@ -26,7 +26,7 @@ Provides a `GlobalizedUniquenessValidator` which checks whether
 the value of the specified attributes are unique across the system.
 
 See validates_uniqueness_of in ActiveRecord::Validations::ClassMethods for further explanation.
-This validator basically works the same, but respects globalize3 model translations.
+This validator basically works the same, but additionally respects globalize3 model translations.
 Also, you can use :locale when specifying the :scope option.
 
 For instance, if you want to validate that a product title is unique in each locale:
@@ -47,7 +47,6 @@ Or:
 
 * Might not yet work correctly with serialized attributes which are translated
 * Verify that it works with activerecord 3.2
-* Tests!
 
 ## Contributing
 
