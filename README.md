@@ -32,7 +32,7 @@ the value of the specified attributes are unique across the system.
 
 See validates_uniqueness_of in ActiveRecord::Validations::ClassMethods for further explanation.
 This validator basically works the same, but additionally respects globalize3 model translations.
-Also, you can use :locale when specifying the :scope option.
+Also, you can use :locale when specifying the :scope option. This will scope the validation to the current locale.
 
 For instance, if you want to validate that a product title is unique in each locale:
 
