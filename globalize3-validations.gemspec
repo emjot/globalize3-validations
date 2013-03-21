@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["herold@emjot.de"]
   spec.description   = %q{adds a uniqueness validator for globalize3 translated models}
   spec.summary       = %q{uniqueness validation for globalize3 translated models}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/emjot/globalize3-validations"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)

@@ -1,4 +1,4 @@
-# Globalize3::Validations
+# globalize3-validations
 
 Provides a uniqueness validator which can be used with globalize3 translated models.
 
