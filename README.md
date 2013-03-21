@@ -10,7 +10,7 @@ Works with rails 3.1 and 3.2.
 
 Rails 3.0 is not fully supported (case insensitive validation doesn't work).
 
-The validator is based on the activerecord 3.1 uniqueness validator.
+The validator is based on the activerecord 3.2 uniqueness validator.
 
 
 ## Installation

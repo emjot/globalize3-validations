@@ -42,11 +42,11 @@ module ActiveRecord
               scope_value = if scope_item == :locale
                               Globalize.locale.to_s
                             else
-                              record.send(scope_item)
+                              record.read_attribute(scope_item)
                             end
               relation = relation.and(table[scope_item].eq(scope_value))
             else
-              scope_value = record.send(scope_item)
+              scope_value = record.read_attribute(scope_item)
               relation = relation.and(finder_class.arel_table[scope_item].eq(scope_value))
             end
           end
@@ -95,7 +95,7 @@ module ActiveRecord
 
         def build_relation(klass, table, attribute, value) #:nodoc:
           column = klass.columns_hash[attribute.to_s]
-          value = column.limit ? value.to_s.mb_chars[0, column.limit] : value.to_s if column.text?
+          value = column.limit ? value.to_s.mb_chars[0, column.limit] : value.to_s if value && column.text?
 
           if !options[:case_sensitive] && value && column.text?
             # will use SQL LOWER function before comparison
