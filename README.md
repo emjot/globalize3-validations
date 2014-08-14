@@ -6,7 +6,7 @@ Provides a uniqueness validator which can be used with globalize3 translated mod
 
 ## Compatibility
 
-Works with rails 3.1 and 3.2.
+Works with rails 3.1 and 3.2. For rails 4, please see the README in the rails4 branch.
 
 Rails 3.0 is not fully supported (case insensitive validation doesn't work).
 
