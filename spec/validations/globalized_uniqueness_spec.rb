@@ -10,7 +10,7 @@ describe 'ActiveRecord::Validations::GlobalizedUniquenessValidator' do
   end
 
   it "should validate uniqueness on an untranslated model" do
-    Untranslated.validates_globalized_uniqueness_of(:name)
+    Untranslated.validates_uniqueness_of(:name)
 
     u = Untranslated.new("name" => "I'm uniqué!")
     u.save.should be_true
@@ -27,8 +27,10 @@ describe 'ActiveRecord::Validations::GlobalizedUniquenessValidator' do
     u2.save.should be_true
   end
 
+  # FIXME This test fails with the uniqueness validator patch used by globalize 4 (tested with 4.0.2)
+  #       Reason: the way the patch is built, uniqueness is ALWAYS scoped by :locale.
   it "should validate uniqueness" do
-    Topic.validates_globalized_uniqueness_of(:title)
+    Topic.validates_uniqueness_of(:title)
     title = "I'm uniqué!"
 
     t = Topic.new("title" => title)
@@ -54,7 +56,7 @@ describe 'ActiveRecord::Validations::GlobalizedUniquenessValidator' do
   end
 
   it "should validate uniqueness with :locale scope" do
-    Topic.validates_globalized_uniqueness_of(:title, :scope => :locale)
+    Topic.validates_uniqueness_of(:title)
     title = "I'm uniqué!"
 
     t = Topic.new("title" => title)
@@ -83,7 +85,7 @@ describe 'ActiveRecord::Validations::GlobalizedUniquenessValidator' do
   end
 
   it "should validate uniqueness with validates" do
-    Topic.validates :title, :globalized_uniqueness => {:scope => :locale}
+    Topic.validates :title, :uniqueness => true
     Topic.create!('title' => 'abc')
 
     t2 = Topic.new('title' => 'abc')
@@ -92,7 +94,7 @@ describe 'ActiveRecord::Validations::GlobalizedUniquenessValidator' do
   end
 
   it "should validate uniqueness with multiple translated attributes in scope" do
-    Topic.validates_globalized_uniqueness_of(:content, :scope => [:locale, :title])
+    Topic.validates_uniqueness_of(:content, :scope => [:title])
     title = "I'm uniqué!"
     content = "hello world"
 
@@ -123,7 +125,7 @@ describe 'ActiveRecord::Validations::GlobalizedUniquenessValidator' do
   end
 
   it "should validate uniqueness with both translated and untranslated attributes in scope" do
-    Reply.validates_globalized_uniqueness_of(:content, :scope => [:locale, "parent_id"])
+    Reply.validates_uniqueness_of(:content, :scope => ["parent_id"])
     content = "hello world"
 
     t = Topic.create("title" => "I'm unique!")
@@ -148,7 +150,7 @@ describe 'ActiveRecord::Validations::GlobalizedUniquenessValidator' do
   end
 
   it "should validate case sensitive uniqueness" do
-    Topic.validates_globalized_uniqueness_of(:title, :case_sensitive => true, :allow_nil => true)
+    Topic.validates_uniqueness_of(:title, :case_sensitive => true, :allow_nil => true)
 
     t = Topic.new("title" => "I'm unique!")
     t.save.should be_true
@@ -170,9 +172,8 @@ describe 'ActiveRecord::Validations::GlobalizedUniquenessValidator' do
     t4.errors[:title].should == ["has already been taken"]
   end
 
-  # FIXME this test fails on rails 3.0.x
   it "should validate case insensitive uniqueness" do
-    Topic.validates_globalized_uniqueness_of(:title, :case_sensitive => false, :allow_nil => true)
+    Topic.validates_uniqueness_of(:title, :case_sensitive => false, :allow_nil => true)
 
     t = Topic.new("title" => "I'm unique!")
     t.save.should be_true

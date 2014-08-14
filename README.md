@@ -1,64 +1,17 @@
 # globalize3-validations
 
-[![Build Status](https://travis-ci.org/emjot/globalize3-validations.png?branch=master)](https://travis-ci.org/emjot/globalize3-validations)
+[![Build Status](https://travis-ci.org/emjot/globalize3-validations.png?branch=rails4)](https://travis-ci.org/emjot/globalize3-validations)
 
-Provides a uniqueness validator which can be used with globalize3 translated models.
+## Rails 4
 
-## Compatibility
+**globalize >= 4.0.1 already provides uniqueness validation support for translated models via the regular 
+UniquenessValidator. This makes this gem obsolete when using rails 4 - as such it has been discontinued** 
+(i.e. the version of the gem in the rails4 branch does absolutely nothing). 
 
-Works with rails 3.1 and 3.2.
+Compared to what this gem used to do, globalize just has one restriction (checked with globalize 4.0.2): 
+Uniqueness validation is always scoped by locale. This is what you usually want. 
+If not, you should submit an issue and/or pull request to globalize.
 
-Rails 3.0 is not fully supported (case insensitive validation doesn't work).
+## Rails 3
 
-The validator is based on the activerecord 3.2 uniqueness validator.
-
-
-## Installation
-
-Add this line to your application's Gemfile:
-
-    gem 'globalize3-validations'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install globalize3-validations
-
-## Usage
-
-Provides a `GlobalizedUniquenessValidator` which checks whether
-the value of the specified attributes are unique across the system.
-
-See validates_uniqueness_of in ActiveRecord::Validations::ClassMethods for further explanation.
-This validator basically works the same, but additionally respects globalize3 model translations.
-Also, you can use :locale when specifying the :scope option. This will scope the validation to the current locale.
-
-For instance, if you want to validate that a product title is unique in each locale:
-
-    class Product < ActiveRecord::Base
-      translates :title
-      validates_globalized_uniqueness_of :title, :scope => :locale
-    end
-
-Or:
-
-    class Product < ActiveRecord::Base
-      translates :title
-      validates :title, :globalized_uniqueness => {:scope => :locale}
-    end
-
-## Todo / Known Issues
-
-* Doesn't work yet with rails 3.0 when case_sensitive is set to false
-* Might not yet work correctly with serialized attributes which are translated (haven't tested that yet)
-
-## Contributing
-
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+For rails 3.x, please see master branch (versions 0.1.x).
