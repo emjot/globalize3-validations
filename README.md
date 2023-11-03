@@ -2,6 +2,10 @@
 
 [![Build Status](https://travis-ci.org/emjot/globalize3-validations.png?branch=rails4)](https://travis-ci.org/emjot/globalize3-validations)
 
+## Maintainance State of This Gem
+
+Since we do not use this gem in active projects any more, further development of this gem is unlikely. If anyone wants to submit a PR, we will of course still try to review + merge.
+
 ## Rails 4
 
 **globalize >= 4.0.1 already provides uniqueness validation support for translated models via the regular 
