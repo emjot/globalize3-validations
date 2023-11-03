@@ -4,7 +4,7 @@
 
 ## Maintainance State of This Gem
 
-Since we do not use this gem in active projects any more, further development of this gem is unlikely. If anyone wants to submit a PR, we will of course still try to review + merge.
+Since we do not use this gem in active projects any more and it is basically obsolete, this repository will be archived.
 
 ## Rails 4
 
